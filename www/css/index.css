@@ -1,0 +1,48 @@
+body {
+  color: white;
+  margin: 0px;
+  padding: 0px;
+  font-family: system-ui, -apple-system, -apple-system-font, "Segoe UI", "Roboto", sans-serif;
+  padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px);
+  width: 100%;
+}
+
+button {
+  cursor: pointer;
+  transition: 0.5s;
+  background-color: red;
+  color: lightgrey;
+}
+button:hover {
+  background-color: limegreen;
+  color: white;
+}
+
+input {
+  transition: 0.5s;
+  background-color: lightgrey;
+  color: black;
+}
+
+.app {
+  text-align: center;
+  align-items: center;
+  align-content: center;
+}
+
+#question {
+  font-size: 24px;
+  margin: 10px;
+}
+
+#error {
+  background-color: firebrick;
+  color: white;
+  margin: 2px;
+}
+
+#map {
+  margin: 12px;
+  align-self: center;
+  height: 512px;
+}

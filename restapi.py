@@ -32,7 +32,9 @@ def _find_next_id(arr):
 
 @app.get("/questions")
 def get_questions():
-    return jsonify(questions)
+    result = jsonify(questions)
+    result.headers.add('Access-Control-Allow-Origin', '*')
+    return result
 
 @app.post("/questions")
 def add_question():
@@ -45,7 +47,9 @@ def add_question():
 
 @app.get("/locations")
 def get_locations():
-    return jsonify(locations)
+    result = jsonify(locations)
+    result.headers.add('Access-Control-Allow-Origin', '*')
+    return result
 
 @app.post("/locations")
 def add_location():

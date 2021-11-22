@@ -51,6 +51,12 @@ const htmlData = {
     quiz: document.getElementById("quiz")
 };
 
+var routeControl = L.Routing.control({
+    waypoints: [currentObjective.userLocation, currentObjective.location],
+    routeWhileDragging: true,
+    autoRoute: true
+}).addTo(map);
+
 const loadDataFromApiAsync = async (questionNo) => {
     await fetch(apiUrl + "/locations").then(async (httpResponse) => {
         let location = (await httpResponse.json()).find((x) => x.id === questionNo);
@@ -69,6 +75,7 @@ const loadQuestionAsync = async (questionNo) => {
     currentObjective.answer = q.correctAnswer;
     currentObjective.question = q.question;
     htmlData.question.innerText = questionNo + '.' + currentObjective.question;
+    // htmlData.quiz.style.display = "";
     htmlData.quiz.hidden = false;
   })
   .catch((error) => {
@@ -88,6 +95,7 @@ const checkAnswerAsync = async () => {
         alert("Gra skończona!");
       } else {
         htmlData.quiz.hidden = true;
+        // htmlData.quiz.style.display = "none";
         await loadDataFromApiAsync(currentObjective.level);
       }
     } else {
@@ -111,6 +119,7 @@ const refreshUserGpsLocation = () => {
   navigator.geolocation.getCurrentPosition((position) => {
     currentObjective.userLocation = [position.coords.latitude, position.coords.longitude];
     userMarker.setLatLng(currentObjective.userLocation);
+    routeControl.setWaypoints(currentObjective.userLocation, currentObjective.location);
   }),
     (error) => {
       htmlData.error.innerText = error.message;
@@ -124,10 +133,12 @@ const refreshShowQuestion = async() => {
 }
 
 window.onload = async () => {
-  refreshUserGpsLocation();
-  await loadDataFromApiAsync(currentObjective.level);
-  refreshShowQuestion();
-  
-  setInterval(refreshShowQuestion, 2000);
-  setInterval(refreshUserGpsLocation, 2000 /*milliseconds*/);
+    htmlData.quiz.hidden = true;
+
+    refreshUserGpsLocation();
+    await loadDataFromApiAsync(currentObjective.level);
+    refreshShowQuestion();
+    
+    setInterval(refreshShowQuestion, 2000);
+    setInterval(refreshUserGpsLocation, 2000 /*milliseconds*/);
 };

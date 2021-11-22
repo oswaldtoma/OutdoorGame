@@ -9,7 +9,8 @@ app = Flask(__name__)
 
 questions = [
     {"id": 1, "question": "Podaj stolicę Polski.", "correctAnswer": "Warszawa"},
-    {"id": 3, "question": "Przy jakiej ulicy znajduje się Akademia Techniczno-Humanistyczna w Bielsku Białej?", "correctAnswer": "Willowej"},
+    {"id": 2, "question": "Przy jakiej ulicy znajduje się Akademia Techniczno-Humanistyczna w Bielsku Białej?", "correctAnswer": "Willowej"},
+    {"id": 3, "question": "Podaj stolicę Francji.", "correctAnswer": "Paryż"},
     {"id": 4, "question": "Podaj stolicę Egiptu.", "correctAnswer": "Kair"},
     {"id": 5, "question": "Podaj stolicę Czech.", "correctAnswer": "Praga"}
 ]
